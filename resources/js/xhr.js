@@ -1,5 +1,3 @@
-// Trier les fonctions par ordre d'utilisation
-
 function xhrNewProspect() {
     
     let fd1 = new FormData();	

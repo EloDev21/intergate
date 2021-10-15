@@ -54,16 +54,13 @@ require_once("../resources/nav_head.php");
             </a>
             <ul class="navbar-nav">
               <li class="nav-item">
-                  <a class="nav-link" href="">Groups</a>
+                  <a class="nav-link" href="./">Prospect</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="">Partners</a>
+                  <a class="nav-link" href="../price/calculator.php">Calculator</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="">Mails</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="./">Prospect</a>
               </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0 ms-auto">
