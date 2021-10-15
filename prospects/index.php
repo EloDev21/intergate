@@ -4,7 +4,7 @@
 
 //$relative = "../";
 $title = "Intergate Logistics - Prospection";
-require_once("nav_head.php");
+require_once("../resources/nav_head.php");
 ?>
 
 <!doctype html>
@@ -99,33 +99,57 @@ require_once("nav_head.php");
               <label for="countrySrc" class="form-label">Country</label>
               <select class="form-select" aria-label="Select" id="countrySrc" >
                 <option value="null" selected>Select a country</option>
-                <option value="AT">Austria (AT)</option>
-                <option value="BE">Belgium (BE)</option>
-                <option value="BG">Bulgaria (BG)</option>
-                <option value="HR">Croatia (HR)</option>
-                <option value="CY">Cyprus (CY)</option>
-                <option value="CZ">Czechia (CZ)</option>
-                <option value="DK">Denmark (DK)</option>
-                <option value="EE">Estonia (EE)</option>
-                <option value="FI">Finland (FI)</option>
-                <option value="FR">France (FR)</option>
-                <option value="DE">Germany (DE)</option>
-                <option value="EL">Greece (EL)</option>
-                <option value="HU">Hungary (HU)</option>
-                <option value="IE">Ireland (IE)</option>
-                <option value="IT">Italy (IT)</option>
-                <option value="LV">Latvia (LV)</option>
-                <option value="LT">Lithuania (LT)</option>
-                <option value="LU">Luxembourg (LU)</option>
-                <option value="NL">Netherlands (NL)</option>	
-                <option value="MT">Malta (MT)</option>
-                <option value="PL">Poland (PL)</option>
-                <option value="PT">Portugal (PT)</option>
-                <option value="RO">Romania (RO)</option>
-                <option value="SK">Slovakia (SK)</option>
-                <option value="SI">Slovenia (SI)</option>
-                <option value="ES">Spain (ES)</option>
-                <option value="ES">Sweden (SE)</option>
+          	    <option value="AX">🇦🇽 Åland Islands</option>
+          	    <option value="AL">🇦🇱 Albania</option>          	
+          	    <option value="AD">🇦🇩 Andorra</option>          	
+          	    <option value="AT">🇦🇹 Austria</option>          	
+          	    <option value="BY">🇧🇾 Belarus</option>
+          	    <option value="BE">🇧🇪 Belgium</option>
+          	    <option value="BA">🇧🇦 Bosnia and Herzegovina</option>
+          	    <option value="BG">🇧🇬 Bulgaria</option>          	
+          	    <option value="HR">🇭🇷 Croatia</option>          	
+          	    <option value="CY">🇨🇾 Cyprus</option>
+          	    <option value="CZ">🇨🇿 Czech Republic</option>
+          	    <option value="DK">🇩🇰 Denmark</option>          	
+          	    <option value="EE">🇪🇪 Estonia</option>          	
+          	    <option value="FO">🇫🇴 Faroe Islands</option>          	
+          	    <option value="FI">🇫🇮 Finland</option>
+          	    <option value="FR">🇫🇷 France</option>          	
+          	    <option value="DE">🇩🇪 Germany</option>          	
+          	    <option value="GI">🇬🇮 Gibraltar</option>
+          	    <option value="GR">🇬🇷 Greece</option>          	
+          	    <option value="GG">🇬🇬 Guernsey</option>          	
+          	    <option value="VA">🇻🇦 Holy See (Vatican City State)</option>          	
+          	    <option value="HU">🇭🇺 Hungary</option>
+          	    <option value="IS">🇮🇸 Iceland</option>          	
+          	    <option value="IE">🇮🇪 Ireland</option>
+          	    <option value="IM">🇮🇲 Isle of Man</option>          	
+          	    <option value="IT">🇮🇹 Italy</option>          	
+          	    <option value="JE">🇯🇪 Jersey</option>          	
+          	    <option value="LV">🇱🇻 Latvia</option>          	
+          	    <option value="LI">🇱🇮 Liechtenstein</option>
+          	    <option value="LT">🇱🇹 Lithuania</option>
+          	    <option value="LU">🇱🇺 Luxembourg</option>          	
+          	    <option value="MK">🇲🇰 Macedonia, the former Yugoslav Republic of</option>
+			          <option value="MT">🇲🇹 Malta</option>         			
+          	    <option value="MD">🇲🇩 Moldova, Republic of</option>
+          	    <option value="MC">🇲🇨 Monaco</option>          	
+          	    <option value="ME">🇲🇪 Montenegro</option>          	
+          	    <option value="NL">🇳🇱 Netherlands</option>   
+          	    <option value="NO">🇳🇴 Norway</option>          	
+          	    <option value="PL">🇵🇱 Poland</option>
+          	    <option value="PT">🇵🇹 Portugal</option>          	
+          	    <option value="RO">🇷🇴 Romania</option>
+          	    <option value="RU">🇷🇺 Russian Federation</option>          	          	
+          	    <option value="RS">🇷🇸 Serbia</option>          	
+          	    <option value="SK">🇸🇰 Slovakia</option>
+          	    <option value="SI">🇸🇮 Slovenia</option>          	
+          	    <option value="ES">🇪🇸 Spain</option>          	
+          	    <option value="SJ">🇸🇯 Svalbard and Jan Mayen</option>          	
+          	    <option value="SE">🇸🇪 Sweden</option>
+          	    <option value="CH">🇨🇭 Switzerland</option>          	
+          	    <option value="UA">🇺🇦 Ukraine</option>          	
+          	    <option value="GB">🇬🇧 United Kingdom</option>
               </select>
             </div>
             <div class="w-25 p-3">
@@ -569,8 +593,9 @@ require_once("nav_head.php");
       </div>
     </div>
 
-    <script src="js/table.js"></script>
-    <script src="js/xhr.js"></script>
+    <script src="../resources/js/table.js"></script>
+    <script src="../resources/js/xhr.js"></script>
+    <script src="../resources/js/countryCodeToEmojiName.js"></script>
 
     <script>
       $(document).ready(function(){
