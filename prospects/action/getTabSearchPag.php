@@ -70,9 +70,9 @@ $tabHead = "<div class='table-responsive'>
                                 <th scope='col'>Type</th>
                                 <th scope='col'>Email </th>
                                 <th scope='col'>Phone</th>
-                                <th scope='col'>Available</th>
-                                <th scope='col'>Deadline</th>
+                                <th scope='col'>Available</th>                        
                                 <th scope='col'>Creation</th>
+                                <th scope='col'>Deadline</th>
                                 <th scope='col'>Action</th>
                             </tr>
                         </thead>
@@ -99,8 +99,8 @@ foreach ($data as $row) {
   }
 
   $tableau .= "          
-                  <td>" . $row['deadline'] . "</td>
                   <td>" . $row['creation'] . "</td>
+                  <td>" . $row['deadline'] . "</td>
                   <td style='padding-top: 2px; padding-bottom: 2px;'>
                     <button class='btn btn-primary-outline' onclick='openModalBook(" . $row['id'] . ")'>
                       <svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='currentColor' class='bi bi-bookmark blue' viewBox='0 0 16 16'>
@@ -165,8 +165,8 @@ $tableau .= $tabFoot;
 
 if ($pageNumber != 1) {
 
-  $isFirstP = ($requestedPage == 1) ? "disabled" : "";
-  $isLastP  = ($requestedPage == $pageNb) ? "disabled" : "";
+  $isFirstP = ($requestedPage == 1) ? "disabled" : "hand";
+  $isLastP  = ($requestedPage == $pageNb) ? "disabled" : "hand";
 
   $numPageBeforecurrP = $requestedPage - 1;
   $numPageAfterCurrP = $requestedPage + 1;
@@ -193,26 +193,26 @@ if ($pageNumber != 1) {
 
   if ($requestedPage == 1 && $pageNb == 2) {
     $pagination .= "<li class='page-item active'><a class='page-link' onclick=''>1</a></li>";
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch(2)'>2</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch(2)'>2</a></li>";
   } else if ($requestedPage == 1) {
     //Gestion du cas où nous sommes sur la page 1
-    $pagination .= "<li class='page-item active'><a class='page-link' onclick=''>1</a></li>";
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch(2)'>2</a></li>";
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch(3)'>3</a></li>";
+    $pagination .= "<li class='page-item active hand'><a class='page-link' onclick=''>1</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch(2)'>2</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch(3)'>3</a></li>";
   } elseif ($requestedPage == $pageNb) {
     //Gestion du cas où nous sommes sur la dernière page
     $nb = $pageNb - 2;
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
     $nb = $pageNb - 1;
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
-    $pagination .= "<li class='page-item active'><a class='page-link' onclick=''>$pageNb</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
+    $pagination .= "<li class='page-item active hand'><a class='page-link' onclick=''>$pageNb</a></li>";
   } else {
     //Gestion du cas où nous sommes dans une plage entre 2 et pageNb-1
     $nb = $requestedPage - 1;
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
-    $pagination .= "<li class='page-item active'><a class='page-link' onclick='getTabPSearch($requestedPage)'>$requestedPage</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
+    $pagination .= "<li class='page-item active hand'><a class='page-link' onclick='getTabPSearch($requestedPage)'>$requestedPage</a></li>";
     $nb = $requestedPage + 1;
-    $pagination .= "<li class='page-item'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
+    $pagination .= "<li class='page-item hand'><a class='page-link' onclick='getTabPSearch($nb)'>$nb</a></li>";
   }
 
   //PAGE SUIVANTE
@@ -239,7 +239,7 @@ if ($pageNumber != 1) {
       <nav aria-label='Page navigation example'>              
         <ul class='pagination justify-content-center'>
           <li class='page-item disabled'><a class='page-link'>Previous</a></li>
-          <li class='page-item'><a class='page-link' onclick='getTabPSearch(1)'>1</a></li>
+          <li class='page-item hand'><a class='page-link' onclick='getTabPSearch(1)'>1</a></li>
           <li class='page-item disabled'><a class='page-link'>Next</a></li>
         </ul>              
       </nav>";

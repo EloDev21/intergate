@@ -55,7 +55,7 @@ function xhrNewProspect() {
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200)) {				
-            getTabProspect();
+            getTabPSearch(1);
             $('#modalNewProspect').modal('hide');
             $('#formNewProspect').trigger("reset");
         }
@@ -72,7 +72,7 @@ function xhrDeleteProspect(idProspect) {
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200)) {				
-            getTabProspect();
+            getTabPSearch(1);
             $('#modalDeleteProspect').modal('hide');
             console.log('Arg, i\'ve been deleted...')
         }
@@ -173,7 +173,7 @@ function xhrEditProspect(idProspect) {
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200)) {				
-            getTabProspect();
+            getTabPSearch(1);
             $('#modalEditProspect').modal('hide');
             $('#formEditProspect').trigger("reset");
             //console.log('Debug log : Edit done')
@@ -191,7 +191,7 @@ function xhrBookProspect(idProspect) {
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200)) {				
-            getTabProspect();
+            getTabPSearch(1);
             $('#modalBookProspect').modal('hide');
             //console.log('Debug ')
         }
@@ -209,7 +209,7 @@ function xhrArchiveProspect(idProspect) {
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200)) {				
-            getTabProspect();
+            getTabPSearch(1);
             $('#modalArchiveProspect').modal('hide');
             $('#formArchiveProspect').trigger("reset");
             //console.log('Debug : Archive done');

@@ -1,7 +1,14 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['firstname']) || strlen($_SESSION['firstname']) <= 0){
+  header("location: ../index.php");
+  exit;
+}
+
+//include "../sessionManage.php";
 //========================== Notes de dev ===========================================
 //===================================================================================
-
 //$relative = "../";
 $title = "Intergate Logistics - Prospection";
 require_once("../resources/nav_head.php");
@@ -17,6 +24,9 @@ require_once("../resources/nav_head.php");
         }
         .blue {
           color: #0d6efd;
+        }
+        .hand {
+          cursor: pointer;
         }
     </style>
     
@@ -158,7 +168,7 @@ require_once("../resources/nav_head.php");
               </select>
             </div>
             <div class="w-25 p-3">
-              <label for="bookedSrc" class="form-label">Booked</label>
+              <label for="bookedSrc" class="form-label">Available</label>
               <select class="form-select" aria-label="Select" id="bookedSrc" >
                 <option value="All" selected>All</option>
                 <option value="1">Yes</option>
@@ -659,6 +669,23 @@ require_once("../resources/nav_head.php");
         $('#btnSendNewOffer').attr('onclick', 'xhrNewOffer('+idProspect+')');
         $('#modalNewOfferProspect').modal('show');
       }
+    
+      function xhrLogout() {
+          
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '../logout.php', true);	
+          xhr.send();
+
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState == 4 && (xhr.status == 200)) {				
+                  toastr.success("Login successful, you will be redirected soon.");                            
+                  window.location.href = "prospects/index.php";
+                      
+              }
+          }
+      } 
+        
+
     </script>
   
   </body>
