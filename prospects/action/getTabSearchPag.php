@@ -71,8 +71,14 @@ $tabHead = "<div class='table-responsive'>
                                 <th scope='col'>Email </th>
                                 <th scope='col'>Phone</th>
                                 <th scope='col'>Available</th>                        
-                                <th scope='col'>Creation</th>
-                                <th scope='col'>Deadline</th>
+                                <th scope='col'>Creation</th>";
+
+if(!isset($_POST['booked']) || $_POST['booked'] == 0) {                                
+  $tabHead .= "
+                                <th scope='col'>Deadline</th>";
+} 
+
+$tabHead .= "
                                 <th scope='col'>Action</th>
                             </tr>
                         </thead>
@@ -90,17 +96,24 @@ foreach ($data as $row) {
                   <td>" . $row['email'] . "</td>
                   <td>" . $row['phone'] . "</td>";
 
-  if ($row['available'] == 1) {
-    $tableau .= "          
-                  <td>" . boolToYN($row['available']) . "</td>";
-  } else {
-    $tableau .= "          
+  if(isset($row['actor'])) {                  
+    $tableau .= "
                   <td>" . boolToYN($row['available']) . " (" . $row['actor'] . ")</td>";
+  } else {
+    $tableau .= "
+                  <td>" . boolToYN($row['available']) . "</td>";
+  }
+                    
+    $tableau .= "
+                  <td>" . $row['creation'] . "</td>";
+
+  if(!isset($_POST['booked']) || $_POST['booked'] == 0) { 
+    $tableau .= " 
+                  <td>" . $row['deadline'] . "</td>";         
+                  
   }
 
-  $tableau .= "          
-                  <td>" . $row['creation'] . "</td>
-                  <td>" . $row['deadline'] . "</td>
+  $tableau .= "                            
                   <td style='padding-top: 2px; padding-bottom: 2px;'>
                     <button class='btn btn-primary-outline' onclick='openModalBook(" . $row['id'] . ")'>
                       <svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='currentColor' class='bi bi-bookmark blue' viewBox='0 0 16 16'>
