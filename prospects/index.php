@@ -6,18 +6,21 @@ if(!isset($_SESSION['firstname']) || strlen($_SESSION['firstname']) <= 0){
   exit;
 }
 
-//include "../sessionManage.php";
-//========================== Notes de dev ===========================================
-//===================================================================================
-//$relative = "../";
+$managerId = $_SESSION['id_manager'];
+$managerFName = $_SESSION['firstname'];
+
 $title = "Intergate Logistics - Prospection";
 require_once("../resources/nav_head.php");
 ?>
+<script></script>
 
 <!doctype html>
 <html lang="en">
   <body>
-            
+    
+    <script>const managerId = <?=json_encode($managerId)?>;</script>        
+    <script>const managerFName = <?=json_encode($managerFName)?>;</script>        
+    
     <style>
         .title-white {
             color: white;
@@ -59,7 +62,7 @@ require_once("../resources/nav_head.php");
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="./">
               <img width="120"  src="http://www.intergate-group.com/wp-content/uploads/2017/11/intergate-group.png" alt="Intergate Group">
             </a>
             <ul class="navbar-nav">
@@ -74,8 +77,8 @@ require_once("../resources/nav_head.php");
               </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0 ms-auto">
-                <li class="nav-item my-2 my-sm-0" style = "display: inline;width: 80px;text-align: center; float: right;">
-                    <a class="nav-link" href="../logout.php">Logout</a>
+                <li class="nav-item my-2 my-sm-0" style = "display: inline; width: 200px;text-align: center; float: right;">
+                    <a class="nav-link" href="../logout.php">Logout (<?=$managerFName?>)</a>
                 </li>
             </ul>
           </div>
@@ -449,7 +452,7 @@ require_once("../resources/nav_head.php");
       </div>
     </div>
     
-    <!-- Modal archivage prospect -->
+    <!-- Modal Archive -->
     <div class="modal fade" id="modalArchiveProspect" tabindex="-1" aria-labelledby="modalArchiveProspectLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -459,7 +462,7 @@ require_once("../resources/nav_head.php");
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">	
-              <p>Done the <?=date('d-m-y');?> by Bob</p>
+              <p>Done the <?=date('d-m-y');?> by <?=$managerFName?></p>
               <div class="form-floating">
                 <textarea class="form-control" placeholder="Feedback on the prospection..." id="commentT" style="height: 110px;"></textarea>
                 <label for="commentT">Feedback...</label>
@@ -474,7 +477,7 @@ require_once("../resources/nav_head.php");
       </div>
     </div>
     
-    <!-- Modal suppress -->
+    <!-- Modal Delete -->
     <div class="modal fade" id="modalDeleteProspect" tabindex="-1" aria-labelledby="modalDeleteProspectLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -535,7 +538,7 @@ require_once("../resources/nav_head.php");
       </div>
     </div>
     
-    <!-- Modal offres prospect -->
+    <!-- Modal Offers -->
     <div class="modal fade" id="modalOffers" tabindex="-1" aria-labelledby="modalOffersLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">

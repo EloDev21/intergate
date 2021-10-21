@@ -2,7 +2,7 @@
   require('../database.php');
   
   $id = $_POST['id'];
-  $actor = "Alice";
+  $actor = $_POST['actor'];
   $available = 0;
   $deadline = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+14, date("Y")));
 

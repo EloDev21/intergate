@@ -1,5 +1,14 @@
 <?php 
     require_once('../database.php');
+
+    function getNameManager($idManager) {
+        $pdo = getConnexion();
+        $stmt = $pdo->prepare("SELECT first_name FROM MANAGERS WHERE id = ?");
+        $stmt->execute([$idManager]); 
+        $data = $stmt->fetch();
+        return (isset($data['first_name'])) ? $data['first_name'] : "?";
+    }
+
     $id = $_POST['idProspect'];
 
     $pdo = getConnexion();
@@ -31,7 +40,7 @@
         $tableau .= "
             <tr>
                 <td>".$row['creation']."</td>
-                <td>".$row['actor']."</td>
+                <td>".getNameManager($row['actor'])."</td>
                 <td>".$row['commentT']."</td>
             </tr>";
     }

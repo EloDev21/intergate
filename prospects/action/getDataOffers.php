@@ -2,6 +2,14 @@
     require_once('../database.php');
     $id = $_POST['idProspect'];
 
+    function getNameManager($idManager) {
+        $pdo = getConnexion();
+        $stmt = $pdo->prepare("SELECT first_name FROM MANAGERS WHERE id = ?");
+        $stmt->execute([$idManager]); 
+        $data = $stmt->fetch();
+        return (isset($data['first_name'])) ? $data['first_name'] : "?";
+    }
+
     $pdo = getConnexion();
     $stmt = $pdo->prepare("SELECT * FROM OFFER WHERE id_prospect = ? ORDER BY id DESC");
     $stmt->execute([$id]); 
@@ -34,7 +42,7 @@
         $tableau .= "
             <tr>
                 <td>".$row['creation']."</td>
-                <td>".$row['actor']."</td>
+                <td>".getNameManager($row['actor'])."</td>
                 <td>".$row['cityFrom']."</td>
                 <td>".$row['cityTo']."</td>
                 <td>".$row['offer']."</td>

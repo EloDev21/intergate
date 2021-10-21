@@ -2,9 +2,16 @@
 
 require_once('../database.php');
 
-function boolToYN($bool)
-{
-  return ($bool == 1) ? "Yes" : "No";
+function boolToYN($bool) {
+    return ($bool == 1) ? "Yes" : "No";
+}
+
+function getNameManager($idManager) {
+    $pdo = getConnexion();
+    $stmt = $pdo->prepare("SELECT first_name FROM MANAGERS WHERE id = ?");
+    $stmt->execute([$idManager]); 
+    $data = $stmt->fetch();
+    return (isset($data['first_name'])) ? $data['first_name'] : "?";
 }
 
 $requestedPage = $_POST['Page'];
@@ -98,7 +105,7 @@ foreach ($data as $row) {
 
   if(isset($row['actor'])) {                  
     $tableau .= "
-                  <td>" . boolToYN($row['available']) . " (" . $row['actor'] . ")</td>";
+                  <td>" . boolToYN($row['available']) . " (" . getNameManager($row['actor']) . ")</td>";
   } else {
     $tableau .= "
                   <td>" . boolToYN($row['available']) . "</td>";

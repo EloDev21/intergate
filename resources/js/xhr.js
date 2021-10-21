@@ -184,6 +184,7 @@ function xhrEditProspect(idProspect) {
 function xhrBookProspect(idProspect) {   
     fd1 = new FormData();
     fd1.append('id', idProspect);
+    fd1.append('actor', managerId);
     
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'action/bookProspect.php', true);	
@@ -201,6 +202,7 @@ function xhrBookProspect(idProspect) {
 function xhrArchiveProspect(idProspect) {   
     fd1 = new FormData();
     fd1.append('id', idProspect);
+    fd1.append('actor', managerId);
     fd1.append('comment', $('#commentT').val());
 
     var xhr = new XMLHttpRequest();
@@ -305,6 +307,7 @@ function xhrNewOffer(idProspect) {
 
     fd1 = new FormData();
     fd1.append('id', idProspect);
+    fd1.append('actor', managerId);
     fd1.append('cityFrom', cityFrom);
     fd1.append('cityTo', cityTo);
     fd1.append('offer', offer);
