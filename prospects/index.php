@@ -75,7 +75,7 @@ require_once("../resources/nav_head.php");
             </ul>
             <ul class="navbar-nav my-2 my-lg-0 ms-auto">
                 <li class="nav-item my-2 my-sm-0" style = "display: inline;width: 80px;text-align: center; float: right;">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" href="../logout.php">Logout</a>
                 </li>
             </ul>
           </div>
