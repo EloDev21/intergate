@@ -1,6 +1,19 @@
+function xhrGetSelectManagers() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'action/getSelectManagers.php', true);	
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200)) {				
+            let ret = JSON.parse(xhr.response);	
+            let selectRet = ret['selectRet'];
+            $('#actor').append(selectRet);
+            $('#actorEdit').append(selectRet);
+        }
+    }
+}
+
 function xhrNewProspect() {
-    
-    let fd1 = new FormData();	
 	 
     let nameP = $("#nameP").val();
     let country = $("#country").val();
@@ -41,7 +54,7 @@ function xhrNewProspect() {
     if(boolCheck === false)
         return 1;
     
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('nameP', nameP);
     fd1.append('country', country);
     fd1.append('email', email);
@@ -63,7 +76,7 @@ function xhrNewProspect() {
 }
 
 function xhrDeleteProspect(idProspect) {   
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('id', idProspect);
     
     var xhr = new XMLHttpRequest();
@@ -80,7 +93,7 @@ function xhrDeleteProspect(idProspect) {
 }
 
 function getDataEdit(idProspect) {
-	fd1 = new FormData();
+	let fd1 = new FormData();
     fd1.append('idProspect', idProspect);
     
     var xhr = new XMLHttpRequest();
@@ -118,7 +131,7 @@ function getDataEdit(idProspect) {
 }
 
 function xhrEditProspect(idProspect) {
-    let fd1 = new FormData();	    
+    
     let nameP = $("#namePEdit").val();
     let country = $("#countryEdit").val();
     let email = $("#emailEdit").val();
@@ -158,7 +171,7 @@ function xhrEditProspect(idProspect) {
     if(boolCheck === false)
         return 1;
     
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('id', idProspect);
     fd1.append('nameP', nameP);
     fd1.append('country', country);
@@ -182,7 +195,7 @@ function xhrEditProspect(idProspect) {
 }
 
 function xhrBookProspect(idProspect) {   
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('id', idProspect);
     fd1.append('actor', managerId);
     
@@ -200,7 +213,7 @@ function xhrBookProspect(idProspect) {
 }
 
 function xhrArchiveProspect(idProspect) {   
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('id', idProspect);
     fd1.append('actor', managerId);
     fd1.append('comment', $('#commentT').val());
@@ -220,7 +233,7 @@ function xhrArchiveProspect(idProspect) {
 }
 
 function getDataHistory(idProspect) {
-	fd1 = new FormData();
+	let fd1 = new FormData();
     fd1.append('idProspect', idProspect);
     
     var xhr = new XMLHttpRequest();
@@ -239,7 +252,7 @@ function getDataHistory(idProspect) {
 }
 
 function getDataOffers(idProspect) {
-	fd1 = new FormData();
+	let fd1 = new FormData();
     fd1.append('idProspect', idProspect);
     
     var xhr = new XMLHttpRequest();
@@ -305,7 +318,7 @@ function xhrNewOffer(idProspect) {
     if(boolCheck === false)
         return 1;
 
-    fd1 = new FormData();
+    let fd1 = new FormData();
     fd1.append('id', idProspect);
     fd1.append('actor', managerId);
     fd1.append('cityFrom', cityFrom);
@@ -322,7 +335,43 @@ function xhrNewOffer(idProspect) {
             getDataOffers(idProspect);
             $('#modalNewOfferProspect').modal('hide');
             $('#formNewOfferProspect').trigger("reset");
-            console.log('Great, a new offer has been added.')
+            console.log('Great, a new offer has been added.');
+        }
+    }
+
+}
+
+function xhrValidation(idProspect) {
+
+    let loadNumber = $("#loadNumber").val();
+    let boolCheck = true;
+
+    if(loadNumber === '') {
+		toastr.warning("Form error : Please enter the load number.");
+		boolCheck = false;
+	}
+
+    if(loadNumber.length > 30) {
+		toastr.warning("Form error : The load number can't exceed 30 characters.");
+		boolCheck = false;
+	}
+
+    if(boolCheck === false)
+        return 1;
+
+    fd1 = new FormData();
+    fd1.append('id', idProspect);
+    fd1.append('actor', managerId);
+    fd1.append('loadNumber', loadNumber);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'action/validation.php', true);	
+    xhr.send(fd1);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200)) {				
+            getTabPSearch(1);
+            $('#modalValidationProspect').modal('hide');
         }
     }
 

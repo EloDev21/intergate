@@ -18,8 +18,8 @@ $requestedPage = $_POST['Page'];
 $lnBegin = (10 * ($requestedPage - 1));
 $lnEnd = (10 * $requestedPage);
 
-$rqCount = "SELECT COUNT(*) FROM (SELECT *, @rownum := @rownum + 1 AS numRow FROM PROSPECT, (SELECT @rownum := 0) r WHERE 1=1 ";
-$rq = "SELECT * FROM (SELECT *, @rownum := @rownum + 1 AS numRow FROM PROSPECT, (SELECT @rownum := 0) r WHERE 1=1 ";
+$rqCount = "SELECT COUNT(*) FROM (SELECT *, @rownum := @rownum + 1 AS numRow FROM PROSPECT, (SELECT @rownum := 0) r WHERE isActive=1 ";
+$rq = "SELECT * FROM (SELECT *, @rownum := @rownum + 1 AS numRow FROM PROSPECT, (SELECT @rownum := 0) r WHERE isActive=1 ";
 $arr = array();
 
 if (isset($_POST['nameP']) && strlen($_POST['nameP']) > 0) {

@@ -291,14 +291,7 @@ require_once("../resources/nav_head.php");
               <div class="row row-cols-lg-auto g-3 align-items-center">            
                 <div class="w-50 p-3">
                   <label for="actor" class="form-label">Is a manager already prospecting this company?</label>
-                  <select id="actor" class="form-select" aria-label="Select">
-                    <option value="No" selected>No</option>
-                    <option value="Lucy">Lucy</option>
-                    <option value="Charlie">Charlie</option>
-                    <option value="Alice">Alice</option>
-                    <option value="Franck">Franck</option>
-                    <option value="Dylan">Dylan</option>
-                  </select>
+                  <select id="actor" class="form-select" aria-label="Select"></select>
                 </div>
               </div>
             </div>
@@ -413,14 +406,7 @@ require_once("../resources/nav_head.php");
               <div class="row row-cols-lg-auto g-3 align-items-center">            
                 <div class="w-50 p-3">
                   <label for="actorEdit" class="form-label">Is a manager already prospecting this company?</label>
-                  <select id="actorEdit" class="form-select" aria-label="Select">
-                    <option value="No" selected>No</option>
-                    <option value="Lucy">Lucy</option>
-                    <option value="Charlie">Charlie</option>
-                    <option value="Alice">Alice</option>
-                    <option value="Franck">Franck</option>
-                    <option value="Dylan">Dylan</option>
-                  </select>
+                  <select id="actorEdit" class="form-select" aria-label="Select"></select>
                 </div>
               </div>
             </div>
@@ -527,7 +513,7 @@ require_once("../resources/nav_head.php");
             <div class="modal-body">
               <p id="namePValidation"></p>
               <label for="numLot" class="form-label">Load number</label>
-              <input type="text" class="form-control" id="numLot" placeholder="1234567890" minlength="1" maxlength="50">
+              <input type="text" class="form-control" id="loadNumber" placeholder="1234567890" minlength="1" maxlength="50">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -609,16 +595,10 @@ require_once("../resources/nav_head.php");
 
     <script>
       $(document).ready(function(){
-        //getTabProspect();
         clearSrc();
         getTabPSearch(1);
+        xhrGetSelectManagers();
       });  
-
-      /*
-      $('#namePSrc, #countrySrc, #typePSrc, #bookedSrc').change(function() {
-        getTabPSearch();
-      });
-      */
 
       $('#namePSrc, #countrySrc, #typePSrc, #bookedSrc').on('change input', function() {
         getTabPSearch(1);
@@ -662,7 +642,7 @@ require_once("../resources/nav_head.php");
 
       function openModalValidation(idProspect) {
         $('#namePValidation').text('Do you want to validate the prospect '+$('#nameP'+idProspect).text()+' ? If the prospect type is transport, it will turn into a client. Else it will turn into a supplier.');
-        //$('#btnSendValidation').attr('onclick', 'xhrValidationProspect('+idProspect+')');
+        $('#btnSendValidation').attr('onclick', 'xhrValidation('+idProspect+')');
         $('#modalValidationProspect').modal('show');
       }
 
